@@ -1,0 +1,21 @@
+<div class="col-lg-12">
+  <div class="card-header">
+    <strong class="card-title">Login Log</strong>
+  </div>
+  <div class=" wrapperR dim">
+    <table class="positionT">
+      <thead>
+      <tr>
+        <th>Message</th>
+        <th>Time</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let log of logs">
+        <td>{{log.message}}</td>
+        <td>{{log.time}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

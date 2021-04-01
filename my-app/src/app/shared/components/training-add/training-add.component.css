@@ -1,0 +1,473 @@
+.divAdd {
+  height: 90vh;
+  border-radius: 5px;
+  background-color: gray;
+  padding: 20px;
+  background-color: #c3baba;
+}
+
+.easy {
+  background: rgb(63,251,202);
+  background: radial-gradient(circle, rgba(63,251,202,0.8827906162464986) 0%, rgba(129,252,70,0.8575805322128851) 100%);
+}
+
+.medium {
+  background: rgb(251,246,63);
+  background: radial-gradient(circle, rgba(251,246,63,0.9248074229691877) 0%, rgba(252,204,70,0.9668242296918768) 100%);
+}
+
+.hard {
+  background: rgb(251,63,63);
+  background: radial-gradient(circle, rgba(251,63,63,0.9248074229691877) 0%, rgba(252,70,98,0.9668242296918768) 100%);
+}
+
+.description {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.inputText {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.inputNum {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=text],
+input[type=date],
+input[type=submit] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 5px 0 5px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+.column2 {
+  float: left;
+  width: 30%;
+}
+
+.viewSize {
+  text-align: left;
+  height: 500px;
+  border: black 3px solid;
+  background: #eee;
+  overflow: hidden;
+}
+
+.column3 {
+  float: left;
+  border-left: 3px solid black;
+  height: 100%;
+  width: 70%;
+}
+
+.tableView {
+  color: white;
+  background-color: gray;
+}
+
+.third {
+  color: black;
+  background-color: transparent;
+  width: 33.3%;
+  border-bottom: black 6px solid;
+}
+
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.column5 {
+  float: left;
+  width: 52%;
+}
+
+.column6 {
+  float: left;
+  width: 50%;
+}
+
+.column4 {
+  height: inherit;
+  border-right: black 3px solid;
+  float: left;
+  width: 48%;
+  overflow: auto;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+ul {
+  list-style-type: none;
+}
+
+
+.month {
+  padding: 70px 25px;
+  width: 100%;
+  background: #1abc9c;
+  text-align: center;
+}
+
+.month ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.month .prev {
+  float: left;
+  padding-top: 10px;
+}
+
+.month .next {
+  float: right;
+  padding-top: 10px;
+}
+
+.weekdays {
+  margin: 0;
+  padding: 10px 0;
+  background-color: #ddd;
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 13.6%;
+  color: #666;
+  text-align: center;
+}
+
+.days {
+  text-align: left;
+  padding: 10px 0;
+  background: #eee;
+  margin: 0;
+}
+
+.days li {
+  list-style-type: none;
+  display: inline-block;
+  width: 13.6%;
+  text-align: center;
+  margin-bottom: 2px;
+  font-size: 12px;
+  color: #777;
+}
+
+.days li .active {
+  padding: 5px;
+  background: #1abc9c;
+  color: white !important
+}
+
+/* Add media queries for smaller screens */
+@media screen and (max-width: 720px) {
+  .weekdays li, .days li {
+    width: 13.1%;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .weekdays li, .days li {
+    width: 12.5%;
+  }
+
+  .days li .active {
+    padding: 2px;
+  }
+}
+
+@media screen and (max-width: 290px) {
+  .weekdays li, .days li {
+    width: 12.2%;
+  }
+}
+
+.centerPosition {
+  width: 100%;
+  text-align: center;
+  background-color: #1abc9c;
+}
+
+.bottomLine {
+  border-bottom: black 3px solid;
+}
+
+.error-message {
+  color: #cc0033;
+  font-size: 22px;
+  line-height: 15px;
+  margin: 2px 0 0;
+}
+
+
+#msform .action-button {
+  width: 100px;
+  background: #27AE60;
+  font-weight: 400;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+
+#msform .action-button:hover, #msform .action-button:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+
+.fs-title {
+  font-size: 100%;
+  text-transform: uppercase;
+  color: #2C3E50;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.fs-subtitle {
+  font-weight: normal;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+#progressbar {
+  margin-bottom: 30px;
+  overflow: hidden;
+  counter-reset: step;
+}
+
+#progressbar li {
+  list-style-type: none;
+  color: black;
+  text-transform: capitalize;
+  font-size: 16px;
+  width: 33.33%;
+  float: left;
+  position: relative;
+}
+
+#progressbar li.active {
+  color: #27AE60;
+}
+
+#progressbar li:before {
+  content: ''; /*counter(step)*/
+  counter-increment: step;
+  width: 50px;
+  line-height: 50px;
+  display: block;
+  font-size: 18px;
+  color: #fff;
+  background: transparent;
+  border-radius: 100%;
+  margin: 0 auto 5px auto;
+  border: 2px solid #ECECEC;
+}
+
+#progressbar li:nth-child(1):before {
+  content: "\f129";
+  font-family: 'FontAwesome';
+}
+
+#progressbar li:nth-child(2):before {
+  content: "\f013";
+  font-family: 'FontAwesome';
+}
+
+#progressbar li:nth-child(3):before {
+  content: "\f00c";
+  font-family: 'FontAwesome';
+}
+
+#progressbar li:after {
+  content: '';
+  width: 73%;
+  height: 2px;
+  background: #ECECEC;
+  position: absolute;
+  left: -35%;
+  top: 25px;
+  z-index: -1;
+}
+
+#progressbar li:first-child:after {
+  content: none;
+}
+
+#progressbar li.active:before {
+  border: 2px solid #27AE60;
+  color: #27AE60;
+  /* content: "\f164";*/
+}
+
+#progressbar li.active:after {
+  background: #27AE60;
+  color: white;
+}
+
+.form_holder {
+  text-align: center;
+  margin: 30px 0 0;
+}
+
+.disabledButton {
+  background-color: gray;
+}
+
+
+.repeat {
+  height: 47px;
+  width: 5%;
+  text-align: center;
+  border: none;
+  border-radius: 2px;
+}
+
+
+.left {
+  display: inline-block;
+  *display: inline;
+  margin-right: 5px;
+  zoom: 1;
+  font-size: 12px;
+}
+
+
+.fullWight {
+  width: 100%;
+}
+
+
+.details {
+  top: 0;
+  right: 0;
+  position: relative;
+  border: 1px solid black;
+}
+
+.workoutDetail {
+  display: inline-block;
+  font-size: 200%;
+  margin-bottom: 0;
+}
+
+.detailButton {
+  float: right;
+  display: inline-block;
+  border-radius: 10px;
+  margin-top: 1%;
+  margin-right: 1%;
+}
+
+.detailButton2 {
+  float: right;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+.liDetail {
+  text-align: left;
+  background-color: yellow;
+}
+
+.topRight {
+  color: white;
+  background-color: red;
+  float: right;
+}
+
+.exerciseDetail {
+  background-color: green;
+  color: white;
+}
+
+
+.sizer {
+  background: #eee;
+}
+
+
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtnD {
+  background-color: gray;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}

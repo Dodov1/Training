@@ -1,0 +1,50 @@
+
+.notFriends {
+  position: absolute;
+  top: 280%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+}
+
+
+.notFriendsImg {
+  position: absolute;
+  top: 200%;
+  left: 25%;
+}
+
+.AddButton {
+  position: absolute;
+  top: 900%;
+  left: 40%;
+  margin-top: -50px;
+  margin-left: -40px;
+  padding: 2% 5%;
+  background-color: gray;
+  color: whitesmoke;
+}
+
+.requestPending {
+  position: absolute;
+  top: 900%;
+  left: 35%;
+  margin-top: -50px;
+  margin-left: -40px;
+  padding: 2% 5%;
+  background-color: gray;
+  color: whitesmoke;
+}
+
+.profileImage {
+  width: 300px;
+  height: 330px;
+  margin: auto;
+  display: block;
+}
+
+
+.info {
+  font-size: 200%;
+  padding-bottom: 10px;
+}

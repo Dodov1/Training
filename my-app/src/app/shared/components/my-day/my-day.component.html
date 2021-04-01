@@ -1,0 +1,173 @@
+<app-header [title]="header" *ngIf="!showErrorDiv"></app-header>
+
+<div *ngIf="showErrorDiv" class="col-sm-12 position">
+  <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
+    <span class="badge badge-pill badge-danger">Warning</span>
+    Invalid Weight Data.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true" (click)="setErrorFalse()">&times;</span>
+    </button>
+  </div>
+</div>
+
+<div class="row" *ngIf="weight">
+  <div class="col-xl-12 col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="stat-widget-five">
+          <div class="h1 ">
+            <div class="row">
+              <div class="column">
+                <span>📈</span>
+                <div *ngIf="!showWeightAddView" (click)="toggleWeightView()">Weight</div>
+                <div *ngIf="!showWeightAddView">{{weight.weight + ' kg'}}</div>
+                <div class="weightAdd" *ngIf="showWeightAddView">
+                  <button class="exit" (click)="toggleWeightView()">X</button>
+                  Set New Weight
+                  <label for="setNewWeight"></label>
+                  <input id="setNewWeight" class="weightInput" type="number" [(ngModel)]="weightInput"
+                         placeholder="Enter here...">
+                  <button class="addWeightButton" (click)="setNewWeight()">add</button>
+                </div>
+              </div>
+              <div class="column">
+                <div class="stat-digit">Date Measured: {{weight.date}}</div>
+                <div class="stat-digit">Change: {{weight.change}}</div>
+                <div class="stat-digit">BMI: {{weight.bmi}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row" *ngIf="weight==null">
+  <div class="col-xl-12 col-lg-6">
+    <div class="card noWeightView">
+
+      <div class="h1">
+        <span>📈</span>
+      </div>
+      <div class="dd">
+        <label for="setNewWeight2" class="noWeightLabel"> No Weight Data Added</label>
+        <input id="setNewWeight2" class="noWeightInput" type="number" [(ngModel)]="weightInput"
+               placeholder="Enter here...">
+        <button class="noWeightButton" (click)="setNewWeight()">add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="myDay" class="notebookAll">
+
+  <div class="col-xl-3 col-lg-6">
+    <h4>Workouts
+      <a (click)="prevEl()" *ngIf="startNum > 0" class="previous round">&#8249;</a>
+      <a (click)="nextEl()" *ngIf="myDay.workouts.length > startNum + maxElements" class="next round">&#8250;</a>
+    </h4>
+  </div>
+
+  <div class="col-xl-3 col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="stat-widget-one">
+          <div class="h1 ">
+            <span class="ti-pulse"></span>
+            <div class="stat-content dib">
+              <div class="stat-text">Total Workouts</div>
+              <div class="stat-digit">{{myDay.workoutsCount}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-xl-3 col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="stat-widget-one">
+          <div class="h1 ">
+            <span class="ti-time"></span>
+            <div class="stat-content dib">
+              <div class="stat-text">Total Workouts With Links</div>
+              <div class="stat-digit">{{myDay.workoutWithLinks}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-3 col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="stat-widget-one">
+          <div class="h1 ">
+            <span class="ti-heart-broken"></span>
+            <div class="stat-content dib">
+              <div class="stat-text">Total Exercises</div>
+              <div class="stat-digit">{{myDay.workoutsExercisesCount}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="myDay.workouts.length!==0">
+
+    <div class="col col-lg-4" *ngFor="let currentWorkout of workouts">
+      <div class="lines" *ngIf="currentWorkout.link===null"></div>
+      <ul class="list" *ngIf="currentWorkout.link === null">
+        <li><h3>{{currentWorkout.name }}</h3></li>
+        <li>Exercises:</li>
+        <li *ngFor="let exercise of currentWorkout.exercises"
+            [style.background-color]="exercise.status==='Completed' ? '#00ff80' : '#ffd633'" class="notebook">
+          {{exercise.type + ' - ' + exercise.duration + ' ' + exercise.durationType}}
+          <a (click)="markAsDone(exercise,currentWorkout)"
+             *ngIf="exercise.status==='Uncompleted'" class="tick">&#10004;</a>
+        </li>
+        <li *ngFor="let i of arr(minSize-currentWorkout.exercises.length).fill(1)">--</li>
+      </ul>
+      <div class="workoutLinkDiv" *ngIf="currentWorkout.link !== null">
+
+        <h3 class="workoutHeader">{{currentWorkout.name}}</h3>
+        <iframe class="sizeUrl" [src]="currentWorkout.link | youtube"
+                title="YouTube video" name="frame"
+                allowfullscreen></iframe>
+
+      </div>
+
+    </div>
+
+    <div *ngIf="maxElements-myDay.workouts.length > 0">
+
+      <div class="col col-lg-4" *ngFor="let currentWorkout of arr(maxElements - myDay.workouts.length).fill(1)">
+        <div class="lines"></div>
+        <ul class="list">
+          <li><h3>---</h3></li>
+          <li>--</li>
+          <li *ngFor="let i of arr(minSize).fill(1)">--</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+  <div *ngIf="myDay.workouts.length===0">
+    <div class="col col-lg-4" *ngFor="let currentWorkout of arr(maxElements-myDay.workouts.length).fill(1)">
+      <div class="lines"></div>
+      <ul class="list">
+        <li><h3>Rest Day</h3></li>
+        <li>--</li>
+        <li *ngFor="let i of arr(minSize).fill(1)">--</li>
+      </ul>
+    </div>
+  </div>
+</div>
+

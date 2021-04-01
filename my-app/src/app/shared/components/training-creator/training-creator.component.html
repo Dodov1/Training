@@ -1,0 +1,177 @@
+<app-header [title]="'Training Creator'" *ngIf="!showErrorDiv&&!showSuccessDiv"></app-header>
+
+<div *ngIf="showErrorDiv" class="col-sm-12 position">
+  <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
+    <span class="badge badge-pill badge-danger">Warning</span>
+    <p style="display: inline">{{'User With username: '}}</p>
+    <p *ngFor="let errU of errorUsernames" style="display: inline">{{errU + ' '}}</p>
+    <p style="display: inline">{{' have training with this name'}}</p>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true" (click)="setErrorFalse()">&times;</span>
+    </button>
+  </div>
+</div>
+
+
+<div *ngIf="showSuccessDiv" class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+  <span class="badge badge-pill badge-success">Success</span>
+  <p style="display: inline">{{'Successfully added training to users: '}}</p>
+  <p *ngFor="let u of successUsernames" style="display: inline">{{u + ' '}}</p>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true" (click)="setSuccessFalse()">&times;</span>
+  </button>
+</div>
+
+
+<div class="col-lg-12 ">
+
+  <div class="col-lg-10 trainingsView fullSize">
+    <div class="fullSize2" style="position: relative">
+      <h5>Training Creator</h5>
+    </div>
+
+    <div *ngIf="selectedOption==='add'" class="fitToSize">
+      <app-training-add [isReadyTraining]="true"></app-training-add>
+
+    </div>
+    <div *ngIf="selectedOption==='edit'&&trainingToEdit" class="fitToSize">
+      <app-training-edit [training]="trainingToEdit" [isReadyTraining]="true"></app-training-edit>
+    </div>
+
+    <div *ngIf="selectedOption===undefined" class="fitToSize">
+
+
+      <div class="animation04">
+        <div class="name_plate"></div>
+        <div class="name">Training Creator</div>
+      </div>
+
+    </div>
+
+    <div *ngIf="selectedOption==='assign'">
+      <div class="col-lg-4 listView fullSize">
+        <div class="fullSize2">
+          <h5>Users</h5>
+        </div>
+        <ul *ngIf="users" class="listUsers">
+          <li *ngFor="let currentUser of users" class="liClass3">
+            <img class="align-self-center rounded-circle mr-3" style="width:60px; height:60px;" alt=""
+                 routerLink="/users/{{currentUser.id}}" routerLinkActive="active"
+                 src="{{currentUser.profilePicture}}">{{currentUser.username}}
+            <input type="checkbox" id="demo" name="vehicle1" class="checkBox"
+                   (click)="handleSelected($event, currentUser)" [checked]="checkIfSelected(currentUser)">
+          </li>
+        </ul>
+
+        <div *ngIf="links">
+          <div class="column50" *ngIf="links.prev!==undefined" (click)="sendPrevRequest(links.prev.href)">
+            Previous
+          </div>
+          <div class="emptyOption" *ngIf="links.prev===undefined"></div>
+          <div class="emptyOption" *ngIf="links.next===undefined"></div>
+          <div class="column50" *ngIf="links.next!==undefined" (click)="sendNextRequest(links.next.href)">
+            Next
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8 listView2 fullSize">
+        <div class="fullSize2">
+          <h5 *ngIf="selectedTraining">Assign {{selectedTraining.title}}</h5>
+        </div>
+
+        <label for="start" class="titleHeader">Start Date</label>
+        <input type="date" id="start" name="start" [min]="startDateModel.startDate"
+               [(ngModel)]="startDateModel.startDate"
+               value="{{startDateModel.startDate}}"
+               placeholder="Enter Starting Date..." class="inputText" required>
+
+
+        <ul *ngIf="selectedUsers" class="maxSizeU">
+          <li *ngIf="selectedUsers.length==0" class="centerMessage">Selected users will appear here!</li>
+          <li *ngFor="let currentUser of selectedUsers" class="liClass3">
+            <img class="align-self-center rounded-circle mr-3" style="width:60px; height:60px;" alt=""
+                 src="{{currentUser.profilePicture}}">{{currentUser.username}}
+
+          </li>
+        </ul>
+
+        <div class="addButton" (click)="addTrainingToUsers()">
+          Add
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="col-lg-2 trainingsView fullSize">
+    <div class="fullSize2">
+      <h5>Ready Trainings</h5>
+    </div>
+    <ul *ngIf="trainings" class="listTrainings">
+      <li class="liClass2">
+        <button class="optionButtonOne" (click)="setAddOption('add')">Add Training</button>
+      </li>
+      <li *ngFor="let training of trainings" class="liClass">
+        <article class="col-lg2 trainingElement">
+
+          <div class="row">
+            <div class="column25">
+              <a>
+                <img *ngIf="training.trainingType==='Bike'"
+                     [class.easy]="training.difficulty==='Easy'"
+                     [class.medium]="training.difficulty==='Medium'"
+                     [class.hard]="training.difficulty==='Hard'"
+                     class="imageCustom"
+                     src="../../../../assets/images/bike.png"
+                     alt=""/>
+              </a>
+              <a>
+                <img *ngIf="training.trainingType==='Running'"
+                     [class.easy]="training.difficulty==='Easy'"
+                     [class.medium]="training.difficulty==='Medium'"
+                     [class.hard]="training.difficulty==='Hard'"
+                     class="imageCustom"
+                     src="../../../../assets/images/running.png"
+                     alt=""/>
+              </a>
+              <a>
+                <img *ngIf="training.trainingType==='Ski'"
+                     [class.easy]="training.difficulty==='Easy'"
+                     [class.medium]="training.difficulty==='Medium'"
+                     [class.hard]="training.difficulty==='Hard'"
+                     class="imageCustom"
+                     src="../../../../assets/images/ski.png"
+                     alt=""/>
+              </a>
+              <a>
+                <img *ngIf="training.trainingType==='Fitness'"
+                     [class.easy]="training.difficulty==='Easy'"
+                     [class.medium]="training.difficulty==='Medium'"
+                     [class.hard]="training.difficulty==='Hard'"
+                     class="imageCustom"
+                     src="../../../../assets/images/fitness.png"
+                     alt=""/>
+              </a>
+
+            </div>
+            <div class="column75">
+              <h3 class="titleTraining">{{training.title}}</h3>
+            </div>
+          </div>
+        </article>
+
+
+        <div class="column">
+          <button class="optionButton" (click)="setAssignOption('assign',training)">Assign</button>
+        </div>
+        <div class="column">
+          <button class="optionButton" (click)="setEditOption('edit',training)">Edit</button>
+        </div>
+
+
+      </li>
+    </ul>
+  </div>
+</div>

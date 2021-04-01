@@ -1,0 +1,313 @@
+.searchBar {
+  display: block;
+  margin: 1% auto 0;
+  width: 80%;
+  border-radius: 40px;
+  padding: 6px;
+  font-size: 17px;
+  border: 1px solid #ccc;
+}
+
+.suggestion {
+  display: block;
+
+  width: 630px;
+  background-color: white;
+  padding: 6px;
+  font-size: 17px;
+  box-shadow: 2px 2px black;
+  border: 1px solid #ccc;
+}
+
+.suggestion:hover {
+  background-color: lightgrey;
+}
+
+.suggestions {
+  position: absolute;
+  z-index: 1;
+  margin-left: 80px;
+}
+
+.request {
+  padding: 5px;
+}
+
+.request:hover {
+  background-color: grey;
+}
+
+.userOptions li {
+  display: inline-block;
+}
+
+.sortLi {
+  width: 10%;
+}
+
+.searchLi {
+  width: 60%;
+  position: relative;
+}
+
+.linkLi {
+  width: 30%;
+}
+
+.half {
+  width: 50%;
+}
+
+.half2 {
+  width: 25%;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.half21 {
+  width: 25%;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.locationPage {
+  width: 100%;
+}
+
+.errorMessageDiv {
+  padding-bottom: 30%;
+  margin-left: 30%;
+  background-color: red;
+  text-align: center;
+  font-size: 200%;
+}
+
+.usersAddDiv {
+  padding: 2%;
+  margin-bottom: 1%;
+  width: 100%;
+  border-radius: 50px;
+  border: black solid 1px;
+}
+
+.usersAddDiv:hover {
+  background-color: #1abc9c;
+}
+
+.noRequests {
+  font-weight: bold;
+  height: 30vh;
+  padding: 15vh 0;
+  text-align: center;
+}
+
+.bottomRight {
+}
+
+.sizeRequests {
+  width: 100%;
+  background-color: white;
+  height: 41.5vh;
+  overflow: auto;
+  border: 1px solid #ccc
+}
+
+.buttonAdd {
+  font-size: 125%;
+  color: white;
+  background: orange;
+
+}
+
+.buttonAdd:hover {
+  color: orange;
+  background-color: white;
+}
+
+.addA {
+  color: white;
+}
+
+.buttonAdd:hover .addA {
+  color: orange;
+}
+
+.buttons {
+  box-shadow: 2px 2px black;
+  background-color: transparent;
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+  float: right;
+}
+
+.fullSize {
+  padding: 0;
+}
+
+.fullSize2 {
+  padding: 10px;
+  text-align: center;
+  font-size: 200%;
+  background-color: darkgray;
+  border-bottom: 2px grey solid;
+}
+
+.adv {
+
+}
+
+
+.fadein img {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  -webkit-animation-name: fade;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-duration: 6s;
+  animation-name: fade;
+  animation-iteration-count: infinite;
+  animation-duration: 6s;
+}
+
+@-webkit-keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 1;
+  }
+  53% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 1;
+  }
+  53% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#f1 {
+  background-color: lightblue;
+}
+
+#f2 {
+  -webkit-animation-delay: -4s;
+  background-color: yellow;
+}
+
+#f3 {
+  -webkit-animation-delay: -2s;
+  background-color: lightgreen;
+}
+
+.fullSizeUsers {
+  height: 73.5vh;
+  width: 100%;
+}
+
+.wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.circle {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-color: #fcdc29;
+  border-radius: 50%;
+  animation: loading 1.5s cubic-bezier(.8, .5, .2, 1.4) infinite;
+  transform-origin: bottom center;
+  position: relative;
+}
+
+@keyframes loading {
+  0% {
+    transform: translateY(0px);
+    background-color: #fcdc29;
+  }
+  50% {
+    transform: translateY(50px);
+    background-color: #ef584a;
+  }
+  100% {
+    transform: translateY(0px);
+    background-color: #fcdc29;
+  }
+}
+
+.circle-1 {
+  animation-delay: 0.1s;
+}
+
+.circle-2 {
+  animation-delay: 0.2s;
+}
+
+.circle-3 {
+  animation-delay: 0.3s;
+}
+
+.circle-4 {
+  animation-delay: 0.4s;
+}
+
+.circle-5 {
+  animation-delay: 0.5s;
+}
+
+.circle-6 {
+  animation-delay: 0.6s;
+}
+
+.circle-7 {
+  animation-delay: 0.7s;
+}
+
+.circle-8 {
+  animation-delay: 0.8s;
+}
+
+
+
+
+.noInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 73.5vh
+}
+
+.other {
+  color: gray;
+}
+
+.noUsers {
+  margin: auto;
+  text-align: center;
+}
+
+
+

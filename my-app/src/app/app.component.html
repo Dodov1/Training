@@ -1,0 +1,18 @@
+<div *ngIf="isLoggedIn">
+
+  <aside id="left-panel" class="left-panel black">
+    <app-side-nav></app-side-nav>
+  </aside>
+
+  <div id="right-panel" class="right-panel">
+    <app-navigation></app-navigation>
+    <div class="col-lg-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div>
+
+<div *ngIf="!isLoggedIn">
+  <router-outlet></router-outlet>
+</div>

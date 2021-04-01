@@ -1,0 +1,216 @@
+.circleImage {
+  display: inline-block;
+  padding-left: 5px;
+  padding-top: 5px;
+  overflow: hidden;
+  width: 5%;
+  height: 5%;
+}
+
+.position {
+  z-index: 1;
+  position: relative;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+input[type=number],
+input[type=submit], select {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form {
+  width: 100%;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.noWeightDiv {
+  font-size: 200%;
+  padding: 5%;
+  color: whitesmoke;
+  text-align: center;
+}
+
+.weightInput {
+  font-size: 20px;
+  height: 30px;
+  width: 140px;
+  margin: auto;
+}
+
+.noWeightView {
+  height: 20vh;
+}
+
+.noWeightLabel {
+  text-align: center;
+  font-size: 180%;
+  font-weight: bold;
+}
+
+.noWeightInput {
+  font-size: 20px;
+  height: 30px;
+  width: 140px;
+}
+
+.noWeightButton {
+  border-radius: 5px;
+  border: black 1px dotted;
+  background-color: transparent;
+  height: 30px;
+  width: 280px;
+  display: inline-grid;
+}
+
+.dd {
+
+  display: grid;
+  place-items: center;
+}
+
+.exit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.exit:hover {
+  background-color: gray;
+  color: red;
+}
+
+.weightAdd {
+  position: relative;
+  height: 80%;
+  border: black 2px solid;
+  border-radius: 5px;
+}
+
+.addWeightButton {
+  font-size: 20px;
+  border-radius: 20px;
+}
+
+h3 {
+  color: red;
+  text-align: center;
+}
+
+h4 {
+  color: #cd0000;
+  font-size: 42px;
+  letter-spacing: -2px;
+  text-align: left;
+}
+
+.list {
+  color: #555;
+  font-size: 22px;
+  padding: 0 !important;
+  width: 100%;
+  font-family: courier, monospace;
+  border: 1px solid #dedede;
+}
+
+.list li {
+  list-style: none;
+  border-bottom: 1px dotted #ccc;
+  text-indent: 25px;
+  height: auto;
+  padding: 10px;
+  text-transform: capitalize;
+}
+
+.list li:hover {
+  background-color: #f0f0f0;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+}
+
+.lines {
+  border-left: 1px solid #ffaa9f;
+  border-right: 1px solid #ffaa9f;
+  width: 1%;
+  float: left;
+  height: 27em;
+  margin-left: 5%;
+}
+
+.previous {
+  color: black;
+}
+
+.next {
+  color: white;
+}
+
+.round {
+  border-radius: 50%;
+}
+
+.tick {
+  cursor: pointer;
+  right: 0;
+}
+
+.notebook {
+}
+
+.notebookAll {
+
+}
+
+.positionTopRight {
+  top: 0;
+  right: 0;
+  position: relative;
+  background-color: yellow;
+}
+
+.sizeUrl {
+  height: 16.5em;
+  width: 100%;
+}
+
+.workoutLinkDiv {
+  color: #555;
+  font-size: 22px;
+  width: 100%;
+  font-family: courier, monospace;
+  border: 1px solid #dedede;
+}
+
+.workoutHeader {
+  list-style: none;
+  border-bottom: 1px dotted #ccc;
+  text-indent: 25px;
+  height: auto;
+  padding: 10px;
+  text-transform: capitalize;
+}

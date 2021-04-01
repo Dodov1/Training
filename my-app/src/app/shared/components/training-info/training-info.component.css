@@ -1,0 +1,224 @@
+.easy {
+  background: rgb(63,251,202);
+  background: radial-gradient(circle, rgba(63,251,202,0.8827906162464986) 0%, rgba(129,252,70,0.8575805322128851) 100%);
+}
+
+.medium {
+  background: rgb(251,246,63);
+  background: radial-gradient(circle, rgba(251,246,63,0.9248074229691877) 0%, rgba(252,204,70,0.9668242296918768) 100%);
+}
+
+.hard {
+  background: rgb(251,63,63);
+  background: radial-gradient(circle, rgba(251,63,63,0.9248074229691877) 0%, rgba(252,70,98,0.9668242296918768) 100%);
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+}
+
+.month {
+  padding: 70px 25px;
+  width: 100%;
+  background: #1abc9c;
+  text-align: center;
+}
+
+.month ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.month .prev {
+  float: left;
+  padding-top: 10px;
+}
+
+.month .next {
+  float: right;
+  padding-top: 10px;
+}
+
+.weekdays {
+  margin: 0;
+  padding: 10px 0;
+  background-color: #ddd;
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 13.6%;
+  color: #666;
+  text-align: center;
+}
+
+.days {
+  padding: 10px 0;
+  background: #eee;
+  margin: 0;
+}
+
+.days li {
+  list-style-type: none;
+  display: inline-block;
+  width: 13.6%;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: #777;
+}
+
+.days li .active {
+  padding: 5px;
+  background: #1abc9c;
+  color: white !important
+}
+
+.noRequests {
+  font-weight: bold;
+  padding: 20vh 0 0;
+  text-align: center;
+}
+
+.exerciseDiv {
+  overflow: auto;
+  border: black 1px solid;
+  height: 55vh;
+}
+
+.workoutEl {
+  padding: 10px;
+  border: black 1px solid;
+}
+
+.workoutTitle {
+  text-align: center;
+  border-bottom: black solid 2px;
+}
+
+.exerciseTitle {
+  font-weight: bold;
+}
+
+.description {
+  height: 290px;
+  overflow: auto;
+  max-width: 90%;
+}
+
+.column25 {
+  float: left;
+  width: 25%;
+}
+
+.sizeTrainingInfo {
+  margin-left: 30px;
+  height: 300px;
+}
+
+.descriptionText {
+  font-size: 200%;
+}
+
+.descriptionEx {
+  border: black 2px solid;
+}
+
+.exercise {
+  width: 33.33%;
+  display: inline-block;
+  border: black 1px dotted;
+}
+
+.text {
+  color: black;
+}
+
+.type {
+  font-size: 200%;
+}
+
+.circleImage {
+  max-height: 60%;
+  height: 60%;
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.date {
+  font-weight: bold;
+  font-size: 150%;
+}
+
+.titleTraining {
+  color: gray;
+  text-align: center;
+}
+
+.titleTraining:hover {
+  color: black;
+}
+
+.bigCenter {
+  padding: 30% 30% 0;
+  font-size: 200%;
+  text-align: center;
+}
+
+.sizeUrl {
+  height: 16.5em;
+  width: 100%;
+}
+
+.editButton {
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  background-color: red;
+  color: white;
+}
+
+.alignCenter {
+  border-right: black 2px solid;
+  border-left: black 2px solid;
+  text-align: center;
+
+}
+
+.sizeCalendar {
+  max-width: 90%;
+}
+
+.maxSize {
+  max-width: 99%;
+}

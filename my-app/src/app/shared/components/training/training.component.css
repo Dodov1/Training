@@ -1,0 +1,51 @@
+.type {
+  position: absolute;
+  left: 47%;
+  top: 40px;
+}
+
+.circleImage {
+  margin-top: 5px;
+  margin-left: 5px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.date {
+  font-weight: bold;
+  font-size: 200%;
+}
+
+.titleTraining {
+  color: gray;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.titleTraining:hover {
+  color: black;
+}
+
+.imageCustom {
+
+}
+
+.easy {
+  background: rgb(63,251,202);
+  background: radial-gradient(circle, rgba(63,251,202,0.8827906162464986) 0%, rgba(129,252,70,0.8575805322128851) 100%);
+}
+
+.medium {
+  background: rgb(251,246,63);
+  background: radial-gradient(circle, rgba(251,246,63,0.9248074229691877) 0%, rgba(252,204,70,0.9668242296918768) 100%);
+}
+
+.hard {
+  background: rgb(251,63,63);
+  background: radial-gradient(circle, rgba(251,63,63,0.9248074229691877) 0%, rgba(252,70,98,0.9668242296918768) 100%);
+}

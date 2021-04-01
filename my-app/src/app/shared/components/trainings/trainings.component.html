@@ -1,0 +1,6 @@
+<ul *ngIf="trainings">
+  <li *ngFor="let currentTraining of trainings" class="liClass" routerLink="{{urlPrefix+currentTraining.id}}"
+      routerLinkActive="active">
+    <app-training [training]="currentTraining"></app-training>
+  </li>
+</ul>

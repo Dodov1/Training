@@ -1,0 +1,177 @@
+<div class="backgroundCustom">
+
+  <form class="animate">
+    <div class="container">
+      <h1>Register</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+      <div class="row">
+        <div class="column">
+          <label for="fName"><b>First Name</b></label>
+          <input type="text" [(ngModel)]="user.firstName" #fName="ngModel" placeholder="Enter First Name"
+                 name="fName" id="fName" minlength="2"
+                 autocomplete="off"
+                 [style.margin-bottom]="user.firstName !== undefined && fName.errors !== null? '5px' : '22px'"
+                 required>
+          <div *ngIf="fName.invalid && (hasBeenRefreshed|| fName.dirty)">
+            <div *ngIf="fName.errors.required" class="error-message">
+              First Name is required.
+            </div>
+            <div *ngIf="fName.errors.minlength" class="error-message">
+              First Name must be 2 or more symbols.
+            </div>
+          </div>
+          <label for="username"><b>Username</b></label>
+          <input type="text" [(ngModel)]="user.username" placeholder="Enter Username" #username="ngModel"
+                 (keyup)="checkIfUsernameExists()"
+                 autocomplete="off"
+                 minlength="2"
+                 [style.margin-bottom]="(user.username !== undefined && username.errors !== null)||hasUsername? '5px' : '22px'"
+                 name="username" id="username"
+                 required>
+
+          <div *ngIf="username.invalid && (hasBeenRefreshed||username.dirty)">
+            <div *ngIf="username.errors.required" class="error-message">
+              Username is required.
+            </div>
+            <div *ngIf="username.errors.minlength" class="error-message">
+              Username must be 2 or more symbols.
+            </div>
+          </div>
+          <div class="error-message"
+               *ngIf="hasUsername">
+            {{'User with username: ' + username.value + ' already exist!'}}
+          </div>
+
+          <label for="psw"><b>Password</b></label>
+          <input type="password"
+                 [style.margin-bottom]="user.password !== undefined && password.errors !== null &&password !== password2 ? '5px' : '22px'"
+                 minlength="4" #password="ngModel"
+                 [(ngModel)]="user.password" placeholder="Enter Password" name="psw" id="psw" required>
+
+          <div *ngIf="password.invalid && (hasBeenRefreshed||password.dirty)">
+            <div *ngIf="password.errors.required" class="error-message">
+              Password is required.
+            </div>
+            <div *ngIf="password.errors.minlength" class="error-message">
+              Password must be 4 or more symbols.
+            </div>
+          </div>
+          <div class="error-message"
+               *ngIf="user.password !== user.confirmPassword && password.errors === null && password2.errors === null">
+            Passwords are not the same!
+          </div>
+
+
+          <label for="age"><b>Age</b></label>
+          <input type="text" placeholder="Age" [(ngModel)]="user.age" name="age" id="age" #age="ngModel"
+                 minlength="1" (keyup)="checkForWrongAgeInput()"
+                 maxlength="2" autocomplete="off"
+                 required>
+
+          <div *ngIf="age.invalid && (hasBeenRefreshed||age.dirty)">
+            <div *ngIf="age.errors.required" class="error-message">
+              Age is required.
+            </div>
+          </div>
+          <div *ngIf="isAgeInvalid" class="error-message">
+            Age is Invalid Type.
+          </div>
+        </div>
+
+        <div class="column">
+          <label for="lName"><b>Last Name</b></label>
+          <input type="text" placeholder="Enter Last Name" #lName="ngModel" [(ngModel)]="user.lastName" name="lName"
+                 minlength="2"
+                 autocomplete="off"
+                 [style.margin-bottom]="user.lastName !== undefined && lName.errors !== null? '5px' : '22px'"
+                 id="lName" required>
+
+          <div *ngIf="lName.invalid && (hasBeenRefreshed||lName.dirty)">
+            <div *ngIf="lName.errors.required" class="error-message">
+              Last Name is required.
+            </div>
+            <div *ngIf="lName.errors.minlength" class="error-message">
+              Last Name must be 2 or more symbols.
+            </div>
+          </div>
+
+          <label for="email"><b>Email</b></label>
+          <input type="email" placeholder="Enter Email"
+                 autocomplete="off"
+                 [pattern]="regexEmail"
+                 (keyup)="checkIfEmailExists()"
+                 [style.margin-bottom]="(user.email !== undefined && email.errors !== null) || hasEmail? '5px' : '22px'"
+                 #email="ngModel" [(ngModel)]="user.email" name="email"
+                 id="email" required>
+
+          <div *ngIf="email.invalid && (hasBeenRefreshed||email.dirty)">
+            <div *ngIf="email.errors.required" class="error-message">
+              Email is required.
+            </div>
+            <div *ngIf="email.errors.pattern" class="error-message">
+              Invalid Email.
+            </div>
+          </div>
+          <div class="error-message"
+               *ngIf="hasEmail">
+            {{'User with email: ' + email.value + ' already exist!'}}
+          </div>
+
+          <label for="psw-repeat"><b>Repeat Password</b></label>
+          <input type="password" placeholder="Repeat Password" [(ngModel)]="user.confirmPassword" name="psw-repeat"
+                 minlength="4" #password2="ngModel"
+                 [style.margin-bottom]="user.confirmPassword !== undefined && password2.errors !== null && password !== password2? '5px' : '22px'"
+                 id="psw-repeat"
+                 required>
+          <div *ngIf="password2.invalid && (hasBeenRefreshed||password2.dirty)">
+            <div *ngIf="password2.errors.required" class="error-message">
+              Password is required.
+            </div>
+            <div *ngIf="password2.errors.minlength" class="error-message">
+              Password must be 4 or more symbols.
+            </div>
+          </div>
+          <div class="error-message"
+               *ngIf="user.password !== user.confirmPassword && password2.errors === null&& password.errors === null">
+            Passwords are not the same!
+          </div>
+
+          <label for="height"><b>Height</b></label>
+          <input type="text" placeholder="Height" name="height" id="height" #height="ngModel" minlength="2"
+                 maxlength="3" (keyup)="checkForWrongHeightInput()"  autocomplete="off"
+                 [(ngModel)]="user.height" required>
+
+          <div *ngIf="height.invalid && (hasBeenRefreshed || height.dirty)">
+            <div *ngIf="height.errors.required" class="error-message">
+              Height is required.
+            </div>
+          </div>
+          <div *ngIf="isHeightInvalid" class="error-message">
+            Height is Invalid Type.
+          </div>
+
+        </div>
+      </div>
+      <hr>
+
+      <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+
+      <button type="submit" (click)="registerUser()"
+              [class]="height.invalid||password2.invalid||password.invalid||fName.invalid ||lName.invalid||age.invalid||username.invalid||user.password !== user.confirmPassword||hasUsername||hasEmail||isAgeInvalid||isHeightInvalid?'registerbtnD':'registerbtn'"
+              [disabled]="height.invalid||password2.invalid||password.invalid||fName.invalid ||lName.invalid||age.invalid||username.invalid||user.password !== user.confirmPassword||hasUsername||hasEmail||isAgeInvalid||isHeightInvalid">
+        Register
+      </button>
+      <div
+        *ngIf="height.invalid||password2.invalid||password.invalid||fName.invalid ||lName.invalid||age.invalid||username.invalid||user.password !== user.confirmPassword||hasUsername||hasEmail||isAgeInvalid||isHeightInvalid"
+        class="error-messageRegister">
+        Fill all fields correctly to complete Registration.
+      </div>
+
+
+    </div>
+    <div class="container signin">
+      <p>Already have an account? <a routerLink="/login" routerLinkActive="active">Sign in</a>.</p>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,200 @@
+.easy {
+  background: rgb(63,251,202);
+  background: radial-gradient(circle, rgba(63,251,202,0.8827906162464986) 0%, rgba(129,252,70,0.8575805322128851) 100%);
+}
+
+.medium {
+  background: rgb(251,246,63);
+  background: radial-gradient(circle, rgba(251,246,63,0.9248074229691877) 0%, rgba(252,204,70,0.9668242296918768) 100%);
+}
+
+.hard {
+  background: rgb(251,63,63);
+  background: radial-gradient(circle, rgba(251,63,63,0.9248074229691877) 0%, rgba(252,70,98,0.9668242296918768) 100%);
+}
+
+.suggestion {
+  display: block;
+
+  width: 295px;
+  background-color: white;
+  padding: 6px;
+  font-size: 17px;
+  box-shadow: 2px 2px black;
+  border: 1px solid #ccc;
+}
+
+.suggestion:hover {
+  background-color: lightgrey;
+}
+
+.suggestions {
+  position: absolute;
+  z-index: 1;
+}
+
+.size {
+  background-color: whitesmoke;
+  max-height: 40vh;
+}
+
+.size2 {
+  background-color: whitesmoke;
+  max-height: 40vh;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.info {
+  font-size: 200%;
+  padding-bottom: 10px;
+}
+
+.rating {
+  border: black 3px solid;
+  height: 39vh;
+  overflow: auto;
+}
+
+.profileImage {
+  width: 300px;
+  height: 330px;
+  margin: auto;
+  display: block;
+}
+
+.displayHorizontal {
+  display: inline;
+}
+
+.positionCenter {
+  font-weight: bold;
+  padding: 20vh 0;
+  text-align: center;
+}
+
+.notFriends {
+  position: absolute;
+  top: 280%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+}
+
+
+.notFriendsImg {
+  position: absolute;
+  top: 200%;
+  left: 25%;
+}
+
+.AddButton {
+  position: absolute;
+  top: 900%;
+  left: 40%;
+  margin-top: -50px;
+  margin-left: -40px;
+  padding: 2% 5%;
+  background-color: gray;
+  color: whitesmoke;
+}
+
+.requestPending {
+  position: absolute;
+  top: 900%;
+  left: 35%;
+  margin-top: -50px;
+  margin-left: -40px;
+  padding: 2% 5%;
+  background-color: gray;
+  color: whitesmoke;
+}
+
+.trainingsDisplay {
+  overflow: auto;
+  height: 375px;
+  border: black 1px solid;
+}
+
+.circleImage {
+  height: 50px;
+}
+
+.trainingOptions li {
+  display: inline-block;
+}
+
+.liPage {
+  width: 20%;
+}
+
+.liSort {
+  width: 20%;
+}
+
+.liSearch {
+  width: 40%;
+}
+
+.liAdd {
+  width: 20%;
+}
+
+.addButton {
+  border-radius: 5px;
+  width: 90%;
+}
+
+.searchBar {
+  height: 100%;
+  border-radius: 5px;
+  width: 90%;
+}
+
+.location {
+  font-size: 100%;
+}
+
+.locationDropdown {
+  font-size: 100%;
+}
+
+.locationPage {
+  width: 100%;
+}
+
+.pageButtons {
+  width: 50%;
+}
+
+.smallLabel {
+  width: 50%;
+}
+
+.smallInput {
+  width: 50%;
+}
+
+.smallInputLocation {
+  width: 50%;
+}
+
+.marginFix {
+  margin-bottom: 60px;
+}
+
+.contentBox {
+  background-color: gray;
+  border-radius: 5px;
+  border: 2px black solid;
+}

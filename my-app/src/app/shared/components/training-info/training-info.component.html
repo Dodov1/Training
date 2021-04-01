@@ -1,0 +1,200 @@
+<app-header *ngIf="training" [title]="training.training.title"></app-header>
+<div class="col-lg-12">
+
+  <div class="row">
+    <div class="column">
+
+
+      <article *ngIf="training" class=" sizeTrainingInfo">
+
+        <div class="row">
+
+          <div class="column25">
+            <h3 class="titleTraining">{{training.training.title}}</h3>
+
+
+            <img *ngIf="training.training.trainingType==='Bike'"
+                 [class.easy]="training.training.difficulty==='Easy'"
+                 [class.medium]="training.training.difficulty==='Medium'"
+                 [class.hard]="training.training.difficulty==='Hard'"
+                 class="circleImage"
+                 src="../../../../assets/images/bike.png"
+                 alt=""/>
+            <img *ngIf="training.training.trainingType==='Running'"
+                 [class.easy]="training.training.difficulty==='Easy'"
+                 [class.medium]="training.training.difficulty==='Medium'"
+                 [class.hard]="training.training.difficulty==='Hard'"
+                 class="circleImage"
+                 src="../../../../assets/images/running.png"
+                 alt=""/>
+            <img *ngIf="training.training.trainingType==='Ski'"
+                 [class.easy]="training.training.difficulty==='Easy'"
+                 [class.medium]="training.training.difficulty==='Medium'"
+                 [class.hard]="training.training.difficulty==='Hard'"
+                 class="circleImage"
+                 src="../../../../assets/images/ski.png"
+                 alt=""/>
+            <img *ngIf="training.training.trainingType==='Fitness'"
+                 [class.easy]="training.training.difficulty==='Easy'"
+                 [class.medium]="training.training.difficulty==='Medium'"
+                 [class.hard]="training.training.difficulty==='Hard'"
+                 class="circleImage"
+                 src="../../../../assets/images/fitness.png"
+                 alt=""/>
+
+          </div>
+
+          <div class="column alignCenter" style="position: relative">
+
+            <p class="date">{{training.training.fromDate + ' <-> ' + training.training.toDate}}</p>
+
+
+            <p class="type"
+               [style.color]="training.training.statusType==='Completed' ? 'green' : 'red'"> {{training.training.statusType}}</p>
+
+            <button class="editButton" (click)="editTrainingPlan()" *ngIf="training.training.statusType!=='Completed'">
+              Edit
+            </button>
+
+          </div>
+
+
+          <div class="column25">
+            <div class="description">
+              <p class="descriptionText">{{training.training.description}}</p>
+            </div>
+          </div>
+
+        </div>
+
+
+      </article>
+
+
+      <div class="month">
+        <ul>
+          <li class="prev" (click)="prevAction()" *ngIf="month > trainingStartMonth || year > trainingStartYear">
+            &#10094;
+          </li>
+          <li class="next" (click)="nextAction()" *ngIf="month < trainingFinishMonth || year < trainingFinishYear">
+            &#10095;
+          </li>
+          <li>
+            {{month}}<br>
+            <span style="font-size:18px">{{year}}</span>
+          </li>
+        </ul>
+      </div>
+
+      <ul class="weekdays">
+        <li>Mo</li>
+        <li>Tu</li>
+        <li>We</li>
+        <li>Th</li>
+        <li>Fr</li>
+        <li>Sa</li>
+        <li>Su</li>
+      </ul>
+
+      <ul class="days">
+        <li *ngFor="let day of daysToShow; let i = index;">
+          <p *ngIf="day.active === true" (click)="showInfoForDay(day)"
+             [style.background-color]="day.workoutsCount===0?'#00ff00':'#ffa500'">{{day.date}}</p>
+          <p *ngIf="day.active === false">{{day.date}}</p>
+        </li>
+      </ul>
+    </div>
+    <div class="column" *ngIf="currentDay">
+      <div class="col-lg-12" style="border: 1px solid #ccc">
+        <div class="card-header">
+          <h5>Information For Day - {{currentDay.date}}</h5>
+        </div>
+        <div class="col-xl-4 col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="stat-widget-one">
+                <div class="h1 ">
+                  <span class="ti-pulse"></span>
+                  <div class="stat-content dib">
+                    <div class="stat-text">Total Workouts</div>
+                    <div class="stat-digit">{{currentDay.workoutsCount}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-xl-4 col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="stat-widget-one">
+                <div class="h1 ">
+                  <span class="ti-time"></span>
+                  <div class="stat-content dib">
+                    <div class="stat-text">Total Workout With links</div>
+                    <div class="stat-digit">{{currentDay.workoutsLinkCount}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="stat-widget-one">
+                <div class="h1 ">
+                  <span class="ti-heart-broken"></span>
+                  <div class="stat-content dib">
+                    <div class="stat-text">Total Exercises</div>
+                    <div class="stat-digit">{{currentDay.totalExercises}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h1 class="noRequests">Workouts</h1>
+        <div>
+
+          <div class="exerciseDiv" *ngIf="currentDay.workouts.length!==0">
+            <div *ngFor="let currentWorkout of currentDay.workouts" class="workoutEl">
+              <div *ngIf="currentWorkout.link===null">
+                <h3 class="workoutTitle">{{currentWorkout.name}}</h3>
+                <h1 class="exerciseTitle">Exercises</h1>
+                <div class="descriptionEx">
+                  <div class="descriptionText">
+                    <div class="exercise"
+                         [style.background-color]="currentExercise.status==='Completed'?'#00ff00':'#ffa500'"
+                         *ngFor="let currentExercise of currentWorkout.exercises">
+                      <p class="text">Target: {{currentExercise.target}}</p>
+                      <p class="text">Type: {{currentExercise.type}}</p>
+                      <p class="text">Duration: {{currentExercise.duration + ' ' + currentExercise.durationType}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="currentWorkout.link!==null">
+                <h3 class="workoutHeader">{{currentWorkout.name}}</h3>
+                <iframe class="sizeUrl" [src]="currentWorkout.link | youtube" title="YouTube video" name="frame"
+                        allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+          <div class="exerciseDiv" *ngIf="currentDay.workouts.length===0">
+            <h1 class="bigCenter">Rest Day</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+

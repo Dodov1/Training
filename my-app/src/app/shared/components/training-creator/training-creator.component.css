@@ -1,0 +1,326 @@
+.easy {
+  background: rgb(63, 251, 202);
+  background: radial-gradient(circle, rgba(63, 251, 202, 0.8827906162464986) 0%, rgba(129, 252, 70, 0.8575805322128851) 100%);
+}
+
+.medium {
+  background: rgb(251, 246, 63);
+  background: radial-gradient(circle, rgba(251, 246, 63, 0.9248074229691877) 0%, rgba(252, 204, 70, 0.9668242296918768) 100%);
+}
+
+.hard {
+  background: rgb(251, 63, 63);
+  background: radial-gradient(circle, rgba(251, 63, 63, 0.9248074229691877) 0%, rgba(252, 70, 98, 0.9668242296918768) 100%);
+}
+
+.position {
+  z-index: 1;
+  position: relative;
+}
+
+.trainingsView {
+  background-color: white;
+  height: 85vh;
+  border: 1px solid #ccc
+}
+
+.listTrainings {
+  height: 80vh;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+.listUsers {
+  height: 64.1vh;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+.trainingElement {
+  text-align: center;
+}
+
+.row:hover {
+  background-color: grey;
+}
+
+.imageCustom {
+  margin-top: 5px;
+  margin-left: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.column25 {
+  float: left;
+  width: 25%;
+}
+
+.column75 {
+  float: left;
+  width: 75%;
+}
+
+.column50:hover {
+  color: white;
+}
+
+.column50 {
+  padding: 30px;
+  color: black;
+  background-color: grey;
+  text-align: center;
+  float: left;
+  width: 50%;
+}
+
+.emptyOption {
+  padding: 42px;
+  color: black;
+  background-color: grey;
+  text-align: center;
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.row {
+  display: flex;
+}
+
+.titleTraining {
+  font-size: 110%;
+  margin-top: 10px;
+}
+
+.liClass2 {
+  text-align: center;
+  list-style-type: none;
+}
+
+.liClass2:hover {
+  background-color: gray;
+  color: white;
+}
+
+.liClass3 {
+  list-style-type: none;
+}
+
+.titleHeader {
+  display: block;
+  text-align: center;
+  font-size: 200%;
+  font-weight: bold;
+}
+
+.liClass3:hover {
+  background-color: gray;
+  color: white;
+}
+
+.liClass {
+  list-style-type: none;
+}
+
+.fullSize2 {
+  padding: 10px;
+  text-align: center;
+  font-size: 200%;
+  background-color: darkgray;
+  border-bottom: 2px grey solid;
+}
+
+.fullSize {
+  padding: 0;
+}
+
+.optionButtonOne {
+  position: center;
+  font-size: 180%;
+  border: none;
+  background-color: transparent;
+}
+
+.optionButtonOne:hover {
+  color: white;
+}
+
+.optionButton {
+  position: center;
+  font-size: 180%;
+  border: none;
+  background-color: transparent;
+}
+
+.optionButton:hover {
+  color: white;
+}
+
+.listView2 {
+  height: 71vh;
+  background-color: white;
+  border: 1px solid #ccc
+}
+
+.listView {
+  height: 79.8vh;
+  background-color: white;
+  border: 1px solid #ccc
+}
+
+.inputText {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.checkBox {
+  float: right;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.addButton:hover {
+  color: white;
+}
+
+.addButton {
+  padding: 30px;
+  color: black;
+  background-color: grey;
+  text-align: center;
+}
+
+.fitToSize {
+  overflow: auto;
+  max-height: 79.8vh;
+}
+
+.column {
+  text-align: center;
+  float: left;
+  width: 50%;
+}
+
+.column:hover {
+  background-color: gray;
+  color: white;
+}
+
+.maxSizeU {
+  height: 49.7vh;
+  overflow: auto;
+}
+
+.centerMessage {
+  text-align: center;
+  font-size: 200%;
+  font-weight: bold;
+}
+
+.animation04 {
+  background: rgb(235, 0, 0);
+  background: linear-gradient(180deg, rgba(235, 0, 0, 1) 0%, rgba(199, 181, 36, 1) 38%, rgba(101, 215, 68, 1) 100%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+}
+
+.name_plate {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 40vw;
+  height: 16vw;
+  margin: auto;
+  background-color: #3d3c3e;
+  transform-origin: center;
+  animation: name_plate 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0s forwards;
+  opacity: 0;
+}
+
+@keyframes name_plate {
+  0% {
+    transform: scale3d(0, 1, 1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+    opacity: 1;
+  }
+}
+
+.name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(235, 181, 0);
+  font-size: 4vw;
+  font-family: Arial, Helvetica, sans-serif;
+  animation: name 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) 1.1s forwards;
+  opacity: 0;
+}
+
+@keyframes name {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

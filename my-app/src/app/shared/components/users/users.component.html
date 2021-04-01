@@ -1,0 +1,174 @@
+<app-header [title]="'My Users'"></app-header>
+
+<div class="col-lg-10">
+  <div class="card">
+
+
+    <ul class="userOptions">
+
+      <li class="linkLi">
+
+        <ul>
+
+          <li class="half">
+
+            <div class="locationPage" *ngIf="links !== undefined&&lastPage!==0">
+
+              <ul class="pagination">
+                <li *ngIf="links.prev!==undefined" class="paginate_button page-item previous disabled"
+                    (click)="sendPrevRequest(links.prev.href)" id="bootstrap-data-table-export_previous">
+                  <a class="page-link">Previous</a>
+                </li>
+                <li class="paginate_button page-item "><a (click)="sendRequest(links.self.href)"
+                                                          class="page-link">{{page+1}}</a>
+                </li>
+                <li *ngIf="links.next!==undefined" class="paginate_button page-item next"
+                    (click)="sendNextRequest(links.next.href)" id="bootstrap-data-table-export_next">
+                  <a class="page-link">Next</a>
+                </li>
+              </ul>
+            </div>
+
+          </li>
+
+          <li class="half" *ngIf="links !== undefined&&lastPage!==0">
+
+            <label for="pageNumber" class="half">Go to page</label>
+            <input type="number" id="pageNumber" class="half21" [(ngModel)]="jumpPageInput">
+            <button class="half2" (click)="jumpPageAction()">Go</button>
+          </li>
+
+        </ul>
+
+      </li>
+      <li class="sortLi">
+
+
+        <div class="nav-item dropdown" *ngIf="users!==undefined && users.length!==0">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+             aria-expanded="false">Sort By: {{sortBy !== 'id' ? sortBy : ''}}
+            <span class="caret"></span></a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" (click)="sortByMethod('age','asc',links.sortByAgeAsc.href)">Age Ascending</a>
+            <a class="dropdown-item" (click)="sortByMethod('age','desc',links.sortByAgeDesc.href)">Age Descending</a>
+            <a class="dropdown-item" (click)="sortByMethod('height','asc',links.sortByHeightAsc.href)">Height
+              Ascending</a>
+            <a class="dropdown-item" (click)="sortByMethod('height','desc',links.sortByHeightDesc.href)">Height
+              Descending</a>
+            <a class="dropdown-item" (click)="sortByMethod('totalTrainings','asc',links.sortByTotalTrainingsAsc.href)">Total
+              Trainings Ascending</a>
+            <a class="dropdown-item"
+               (click)="sortByMethod('totalTrainings','desc',links.sortByTotalTrainingsDesc.href)">Total
+              Trainings Descending</a>
+          </div>
+
+        </div>
+
+      </li>
+
+      <li class="searchLi">
+
+        <label for="searchBox"></label>
+        <input id="searchBox" class="searchBar" type="text"
+               (keyup)="applyFilter()"
+               (click)="showSuggestions()"
+               [(ngModel)]="searchText" autocomplete="off"
+               placeholder="Search by username..">
+
+        <div *ngIf="suggestionUsers!==undefined" class="suggestions">
+          <div *ngFor="let currentUser of suggestionUsers" class="suggestion" routerLink="/users/{{currentUser.id}}"
+               routerLinkActive="active">
+            <img class="align-self-center rounded-circle mr-3" style="width:50px; height:50px;" alt=""
+                 src="{{currentUser.profilePicture}}">{{currentUser.username}}
+          </div>
+        </div>
+
+      </li>
+
+    </ul>
+
+
+    <div *ngIf="users!==undefined && users.length!==0">
+
+      <div class="col-md-4" *ngFor="let currentUser of users; index as i">
+        <section class="card">
+          <div class="twt-feed blue-bg" routerLink="/users/{{currentUser.id}}" routerLinkActive="active">
+            <div class="corner-ribon black-ribon">
+              <!--          <i class="fa fa-twitter"></i>-->
+            </div>
+
+            <div class="media">
+              <a>
+                <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt=""
+                     src="{{currentUser.profilePicture}}">
+              </a>
+              <div class="media-body">
+                <h2 class="text-white display-6">{{currentUser.username}}</h2>
+              </div>
+            </div>
+          </div>
+          <div class="weather-category twt-category">
+            <ul>
+              <li class="active">
+                <h5>{{currentUser.trainingCount}}</h5>
+                Total Trainings
+              </li>
+              <li>
+                <h5>{{currentUser.height}}</h5>
+                Height
+              </li>
+              <li>
+                <h5>{{currentUser.age}}</h5>
+                Age
+              </li>
+            </ul>
+          </div>
+          <button class="buttonAdd ">
+            <a routerLink="/users/{{currentUser.id}}/trainings/add" class="addA" routerLinkActive="active">
+              Add Training
+            </a>
+          </button>
+
+        </section>
+      </div>
+
+    </div>
+    <div *ngIf="users!==undefined&&users.length===0" class="noInfo">
+
+      <h1 (click)="showSuggestions()" class="noUsers">Add Your First <span class="other">User</span>!</h1>
+    </div>
+
+    <div  *ngIf="users===undefined" class="fullSizeUsers">
+      <div class="wrapper">
+        <span class="circle circle-1"></span>
+        <span class="circle circle-2"></span>
+        <span class="circle circle-3"></span>
+        <span class="circle circle-4"></span>
+        <span class="circle circle-5"></span>
+        <span class="circle circle-6"></span>
+        <span class="circle circle-7"></span>
+        <span class="circle circle-8"></span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="col-lg-2 sizeRequests fullSize" style="border: 1px solid #ccc" *ngIf="usersRequests">
+  <div class="fullSize2">
+    <h5>User Requests</h5>
+  </div>
+  <div class="noRequests" *ngIf="usersRequests.length === 0">No Requests</div>
+
+  <div *ngFor="let currentUser of usersRequests; index as i" class="request" routerLink="/users/{{currentUser.id}}">
+    <img class="align-self-center rounded-circle mr-3" style="width:50px; height:50px;" alt=""
+         src="{{currentUser.profilePicture}}">{{currentUser.username}}
+    <button class="buttons" (click)="respond('Rejected',currentUser)">❌</button>
+    <button class="buttons" (click)="respond('Accepted',currentUser)">✔</button>
+  </div>
+</div>
+<div class="col-lg-2 sizeRequests fullSize fadein" style="border: 1px solid #ccc" *ngIf="usersRequests">
+  <img id="f1" src="../../../../assets/images/adv1.png">
+  <img id="f3" src="../../../../assets/images/adv2.jpg">
+  <img id="f2" src="../../../../assets/images/adv3.jpg">
+</div>

@@ -1,0 +1,224 @@
+.easy {
+  background: rgb(63,251,202);
+  background: radial-gradient(circle, rgba(63,251,202,0.8827906162464986) 0%, rgba(129,252,70,0.8575805322128851) 100%);
+}
+
+.medium {
+  background: rgb(251,246,63);
+  background: radial-gradient(circle, rgba(251,246,63,0.9248074229691877) 0%, rgba(252,204,70,0.9668242296918768) 100%);
+}
+
+.hard {
+  background: rgb(251,63,63);
+  background: radial-gradient(circle, rgba(251,63,63,0.9248074229691877) 0%, rgba(252,70,98,0.9668242296918768) 100%);
+}
+
+
+.suggestion {
+  display: block;
+
+  width: 630px;
+  background-color: white;
+  padding: 6px;
+  font-size: 17px;
+  box-shadow: 2px 2px black;
+  border: 1px solid #ccc;
+}
+
+.suggestion:hover {
+  background-color: lightgrey;
+}
+
+.suggestions {
+  position: absolute;
+  z-index: 1;
+}
+
+.trainingsDisplay {
+  border: black 1px solid;
+  background-color: whitesmoke;
+  height: 76vh;
+  overflow: auto;
+}
+
+.noTrainingsDisplay {
+  background: #3399ff;
+  max-height: 80vh;
+  height: 80vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.trainingOptions li {
+  display: inline-block;
+}
+
+.liPage {
+  width: 20%;
+}
+
+.liSort {
+  width: 20%;
+}
+
+.liSearch {
+  width: 40%;
+}
+
+.liAdd {
+  width: 20%;
+}
+
+.addButton {
+  border-radius: 5px;
+  width: 90%;
+}
+
+.searchBar {
+  display: block;
+  width: 90%;
+  border-radius: 40px;
+  padding: 6px;
+  font-size: 17px;
+  border: 1px solid #ccc;
+}
+
+.location {
+  font-size: 140%;
+}
+
+.locationDropdown {
+  font-size: 100%;
+}
+
+.locationPage {
+  width: 100%;
+}
+
+.pageButtons {
+  width: 50%;
+}
+
+.smallLabel {
+  width: 50%;
+}
+
+.smallInput {
+  width: 25%;
+}
+
+.smallInputLocation {
+  width: 50%;
+}
+
+
+.circle {
+  overflow: hidden;
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  animation: ripple 5s infinite;
+  box-shadow: 0px 0px 1px 0px #508fb9;
+}
+
+.small {
+  width: 200px;
+  height: 200px;
+  left: 00px;
+  bottom: 0px;
+}
+
+.medium {
+  width: 400px;
+  height: 400px;
+  left: -100px;
+  bottom: -100px;
+}
+
+.large {
+  width: 600px;
+  height: 600px;
+  left: -200px;
+  bottom: -200px;
+}
+
+.xlarge {
+  width: 800px;
+  height: 800px;
+  left: -300px;
+  bottom: -300px;
+}
+
+.xxlarge {
+  width: 1000px;
+  height: 1000px;
+  left: -400px;
+  bottom: -400px;
+}
+
+.shade1 {
+  opacity: 0.2;
+}
+
+.shade2 {
+  opacity: 0.5;
+}
+
+.shade3 {
+  opacity: 0.7;
+}
+
+.shade4 {
+  opacity: 0.8;
+}
+
+.shade5 {
+  opacity: 0.9;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.8);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(0.8);
+  }
+}
+
+.header {
+  margin-top: 20%;
+  text-align: center;
+}
+
+
+
+.addButtonPulsating {
+  background: transparent;
+  border-radius: 5px;
+  width: 90%;
+
+  transform: scale(0.5);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}

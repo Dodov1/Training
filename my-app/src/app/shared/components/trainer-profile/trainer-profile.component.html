@@ -1,0 +1,138 @@
+<app-header [title]="user.username"></app-header>
+
+<app-profile-view *ngIf="statusType!='Accepted'" [user]="user" [isTrainer]="false"
+                  [imageLocation]="imageLocation" [statusType]="statusType"></app-profile-view>
+
+<div class="contentBox2" *ngIf="statusType=='Accepted'&&trainerInfo">
+
+  <div class="row">
+
+    <div class="column">
+
+      <div class="row">
+        <div class="column">
+
+          <img
+            class="profileImage"
+            src="{{imageLocation}}"
+            alt=""/>
+
+        </div>
+
+        <div class="column">
+          <h1 class="info">Personal Information:</h1>
+          <h3 class="info">Name - {{user.firstName + ' ' + user.lastName}}</h3>
+          <h3 class="info">Username - {{user.username}}</h3>
+          <h3 class="info">Height - {{user.height}} cm</h3>
+          <h3 class="info">Age - {{user.age}}</h3>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="column">
+
+      <div class="rating">
+        <h1 class="ratingHeader">Rate Trainer</h1>
+        <div id="full-stars-example-two">
+          <div class="rating-group">
+            <input disabled checked class="rating__input rating__input--none" name="rating3" id="rating3-none" value="0"
+                   type="radio">
+            <label aria-label="1 star" class="rating__label" for="rating3-1"><i
+              class="rating__icon rating__icon--star fa fa-star"></i></label>
+            <input class="rating__input" name="rating3" id="rating3-1" [(ngModel)]="ratingObj.rating" value="1"
+                   type="radio">
+            <label aria-label="2 stars" class="rating__label" for="rating3-2"><i
+              class="rating__icon rating__icon--star fa fa-star"></i></label>
+            <input class="rating__input" name="rating3" id="rating3-2" [(ngModel)]="ratingObj.rating" value="2"
+                   type="radio">
+            <label aria-label="3 stars" class="rating__label" for="rating3-3"><i
+              class="rating__icon rating__icon--star fa fa-star"></i></label>
+            <input class="rating__input" name="rating3" id="rating3-3" [(ngModel)]="ratingObj.rating" value="3"
+                   type="radio">
+            <label aria-label="4 stars" class="rating__label" for="rating3-4"><i
+              class="rating__icon rating__icon--star fa fa-star"></i></label>
+            <input class="rating__input" name="rating3" id="rating3-4" [(ngModel)]="ratingObj.rating" value="4"
+                   type="radio">
+            <label aria-label="5 stars" class="rating__label" for="rating3-5"><i
+              class="rating__icon rating__icon--star fa fa-star"></i></label>
+            <input class="rating__input" name="rating3" id="rating3-5" [(ngModel)]="ratingObj.rating" value="5"
+                   type="radio">
+          </div>
+        </div>
+
+        <button class="submitButton" (click)="submitRating()">SUBMIT</button>
+      </div>
+
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="row" *ngIf="statusType=='Accepted'&&trainerInfo">
+  <div class="column">
+
+
+    <div class="contentBox">
+
+      <h1 class="averageHeader">Trainer Type</h1>
+      <p class="sizeStar" *ngIf="trainerInfo.type==='Individual'">{{trainerInfo.type}}<i class="fa fa-user"></i></p>
+      <p class="sizeStar" *ngIf="trainerInfo.type==='Group'">{{trainerInfo.type}}<i class="fa fa-users"></i></p>
+    </div>
+
+    <div class="contentBox">
+
+      <h1 class="averageHeader">Total Since</h1>
+      <p class="sizeStar">{{trainerInfo.fromDate}}<i class="fa fa-calendar"></i></p>
+    </div>
+
+
+  </div>
+  <div class="column" *ngIf="trainerInfo&&user">
+
+
+    <div class="contentBox">
+
+      <h1 class="averageHeader">Average Trainer Rating</h1>
+      <p class="sizeStar">{{trainerInfo.rating === null ? 0 : trainerInfo.rating}}<i
+        class="rating__icon rating__icon--star fa fa-star sizeStar"></i></p>
+    </div>
+
+    <div class="contentBox">
+
+      <h1 class="averageHeader">Total Users</h1>
+      <p class="sizeStar">{{trainerInfo.totalUsers}}<i
+        class="rating__icon rating__icon--star fa fa-user"></i></p>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="contentBox2" *ngIf="statusType=='Accepted'&&trainerInfo">
+
+  <div class="row">
+
+    <div class="column">
+
+
+      <h1 class="averageHeader">Email</h1>
+      <p class="sizeStar"><i class="fa fa-envelope"></i>{{user.email}}</p>
+
+    </div>
+
+    <div class="column">
+
+      <h1 class="averageHeader">Phone Number</h1>
+      <p class="sizeStar"><i class="fa fa-phone"></i>{{trainerInfo.phoneNumber}}</p>
+
+    </div>
+
+  </div>
+
+</div>
+
+

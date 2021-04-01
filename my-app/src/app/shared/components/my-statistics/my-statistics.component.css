@@ -1,0 +1,17 @@
+.size {
+  background-color: whitesmoke;
+}
+
+.size2 {
+  background-color: whitesmoke;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.column {
+  margin-top: 10%;
+  float: left;
+  width: 50%;
+}

@@ -1,0 +1,370 @@
+<div class="divAdd" *ngIf="training&&training.training&&!cantEdit"
+     [class.easy]="training.training.difficulty==='Easy'"
+     [class.medium]="training.training.difficulty==='Medium'"
+     [class.hard]="training.training.difficulty==='Hard'"
+     xmlns="http://www.w3.org/1999/html">
+
+  <div class="form_holder">
+    <h2 class="fs-title" style="color:black;">Edit Training - {{training.training.title}}</h2>
+    <form id="msform">
+      <ul id="progressbar">
+        <li class="{{step>=1?'active':''}}">1. Training Details</li>
+        <li class="{{step>=2?'active':''}}">2. Days Details</li>
+        <li class="{{step===3?'active':''}}">3. Training Confirmation</li>
+      </ul>
+      <fieldset *ngIf="step===1">
+        <h2 class="fs-title">Training Details</h2>
+        <h3 class="fs-subtitle">Step 1</h3>
+        <div class="row">
+          <div class="column">
+
+            <label for="title">Title<span style="color: red">*</span></label>
+            <input type="text" id="title" name="title"
+                   required minlength="4"
+                   class="inputText"
+                   [style.margin-bottom]="training.training.title !== undefined && title.errors !== null? '5px' : '22px'"
+                   [(ngModel)]="training.training.title" #title="ngModel" placeholder="Enter Title...">
+
+            <div *ngIf="title.invalid && ( title.dirty)">
+              <div *ngIf="title.errors.required" class="error-message">
+                Title is required.
+              </div>
+              <div *ngIf="title.errors.minlength" class="error-message">
+                Title must be 4 or more symbols.
+              </div>
+            </div>
+
+            <label for="dateStart">Starting From</label>
+            <input type="date" id="dateStart" name="dateStart"
+                   (change)="initDays()"
+                   placeholder="Enter Date..." class="inputText"
+                   [(ngModel)]="training.training.fromDate" min="{{minDate}}"
+                   max="{{training.training.toDate}}">
+
+          </div>
+          <div class="column">
+
+            <div class="column">
+              <label for="typeTraining">Training Type<span style="color: red">*</span></label>
+              <select id="typeTraining" [(ngModel)]="training.training.trainingType" #type="ngModel" name="type2"
+                      [style.margin-bottom]="training.training.trainingType === undefined && type.errors !== null&& type.touched? '5px' : '22px'"
+                      required>
+                <option *ngFor="let c of enums.trainingTypes" [ngValue]="c">{{c}}</option>
+              </select>
+              <div *ngIf="training.training.trainingType === undefined && type.touched">
+                <div *ngIf="type.errors.required" class="error-message">
+                  TrainingType is required.
+                </div>
+              </div>
+
+            </div>
+
+            <div class="column">
+
+              <label for="typeDifficulty">Training Difficulty<span style="color: red">*</span></label>
+              <select id="typeDifficulty" [(ngModel)]="training.training.difficulty" #difficulty="ngModel" name="type"
+                      [style.margin-bottom]="training.training.difficulty === undefined && difficulty.errors !== null&& difficulty.touched? '5px' : '22px'"
+                      required>
+                <option *ngFor="let c of enums.difficultyTypes" [ngValue]="c">{{c}}</option>
+              </select>
+              <div *ngIf="training.training.difficulty === undefined && difficulty.touched">
+                <div *ngIf="difficulty.errors.required" class="error-message">
+                  TrainingDifficulty is required.
+                </div>
+              </div>
+            </div>
+
+
+            <label for="dateEnd">Ending At<span style="color: red">*</span></label>
+            <input type="date" id="dateEnd" name="dateEnd" (change)="initDays()"
+                   placeholder="Enter Date..." class="inputText"
+                   [style.margin-bottom]="training.training.toDate === undefined && endDate.invalid !== null? '5px' : '22px'"
+                   [(ngModel)]="training.training.toDate" #endDate="ngModel" min="{{training.training.fromDate}}"
+                   required>
+            <div *ngIf="endDate.invalid && (endDate.touched)">
+              <div *ngIf="endDate.errors.required" class="error-message">
+                End Date is required.
+              </div>
+            </div>
+          </div>
+
+          <label for="description">Description</label>
+          <textarea id="description" name="description" rows="4" cols="50" class="description" placeholder="Type here"
+                    [(ngModel)]="training.training.description" #description="ngModel" required
+                    [defaultValue]="''"></textarea>
+          <div *ngIf="description.invalid && (description.touched)">
+            <div *ngIf="description.errors.required" class="error-message">
+              Description is required.
+            </div>
+          </div>
+
+        </div>
+        <input type="button" name="next"
+               [style.background-color]="title.invalid || endDate.invalid || type.invalid || description.invalid ? 'gray' : '#27AE60'"
+               [disabled]="title.invalid || endDate.invalid || type.invalid || description.invalid"
+
+               (click)="next()" class="next action-button" value="Next"/>
+      </fieldset>
+      <fieldset *ngIf="step===2">
+        <h2 class="fs-title">Days Details</h2>
+        <h3 class="fs-subtitle">Step 2</h3>
+
+        <div class="sizer">
+          <h3 class="centerPosition" *ngIf="currentDay">{{currentDay.date}}</h3>
+          <div class="viewSize">
+
+            <div [ngClass]="currentDay!==undefined?'column2':''">
+
+              <div class="month">
+                <ul>
+                  <li class="prev" (click)="prevAction()"
+                      *ngIf="month > trainingStartMonth || year > trainingStartYear">&#10094;
+                  </li>
+                  <li class="next" (click)="nextAction()"
+                      *ngIf="month < trainingFinishMonth || year < trainingFinishYear">&#10095;
+                  </li>
+                  <li>
+                    {{month}}<br>
+                    <span style="font-size:18px">{{year}}</span>
+                  </li>
+                </ul>
+              </div>
+
+              <ul class="weekdays">
+                <li>Mo</li>
+                <li>Tu</li>
+                <li>We</li>
+                <li>Th</li>
+                <li>Fr</li>
+                <li>Sa</li>
+                <li>Su</li>
+              </ul>
+
+              <ul class="days">
+                <li *ngFor="let day of days; let i = index;">
+                  <p *ngIf="day.active === true" (click)="showAdd(day)"
+                     [style.background-color]=" day.workouts.length!==0?'#FFA500':'#1abc9c'"
+                     class="active">{{day.dayOfMonth}}</p>
+                  <p *ngIf="day.active === false">{{day.dayOfMonth}}</p>
+                </li>
+              </ul>
+            </div>
+            <div [ngClass]="currentDay!==undefined?'column3':''" *ngIf="currentDay">
+
+              <div class="column4">
+                <h2 class="tableView">Workouts View</h2>
+                <button class="third green" (click)="setWorkoutOption('Details')">Details</button>
+                <button class="third yellow" (click)="setWorkoutOption('Edit')">Edit</button>
+                <button class="third red" (click)="setWorkoutOption('Delete')">Delete</button>
+                <ul>
+                  <li class="liDetail" *ngFor="let workout of currentDay.workouts; let i = index">
+                    <div *ngIf="workout.type==='Custom'">
+                      <h3
+                        class="workoutDetail"
+                        (click)="setCurrentWorkout(workout)">{{i + 1 + ' ' + workout.name + ' Custom'}}</h3>
+                      <button class="detailButton" (click)="showExerciseInfo($event)"
+                              *ngIf="selectedWorkoutOption!=='Edit'&&selectedWorkoutOption!=='Delete'">Details
+                      </button>
+                      <button class="detailButton" (click)="editWorkout(workout)"
+                              *ngIf="selectedWorkoutOption==='Edit'">Edit
+                      </button>
+                      <button class="detailButton" (click)="deleteByWorkout(workout)"
+                              *ngIf="selectedWorkoutOption==='Delete'">Delete
+                      </button>
+                      <ul style="display: none">
+                        <li *ngFor="let exercise of workout.exercises; let i = index" class="exerciseDetail">
+                          <button class="detailButton2" (click)="editExercise(exercise)"
+                                  *ngIf="selectedWorkoutOption==='Edit'">Edit
+                          </button>
+                          <button class="detailButton2" (click)="deleteExercise(exercise,workout)"
+                                  *ngIf="selectedWorkoutOption==='Delete'">Delete
+                          </button>
+                          <h3>{{i + 1 + ' ' + exercise.type}}</h3>
+                        </li>
+                      </ul>
+                    </div>
+                    <div *ngIf="workout.type==='Link'">
+                      <button class="detailButton" (click)="showLinkInfo($event)"
+                              *ngIf="selectedWorkoutOption!=='Edit'&&selectedWorkoutOption!=='Delete'">Details
+                      </button>
+                      <button class="detailButton" (click)="editWorkout(workout)"
+                              *ngIf="selectedWorkoutOption==='Edit'">Edit
+                      </button>
+                      <button class="detailButton" (click)="deleteByWorkout(workout)"
+                              *ngIf="selectedWorkoutOption==='Delete'">Delete
+                      </button>
+                      <h3 class="workoutDetail">{{i + 1 + ' ' + workout.name + ' Link'}}</h3>
+                      <h3 class="exerciseDetail" style="display: none">{{workout.link}}</h3>
+                    </div>
+                  </li>
+                </ul>
+
+              </div>
+              <div class="column5">
+
+                <div *ngIf="selectedWorkout===undefined">
+
+                  <form>
+                    <h2 class="tableView">Workout Creator</h2>
+                    <label for="workoutType">Workout Name</label>
+                    <input id="workoutType" type="text" name="workoutType" required
+                           autocomplete="off"
+                           [style.margin-bottom]="(currentWorkout.name !== undefined && WType.errors !== null)? '5px' : '22px'"
+                           [(ngModel)]="currentWorkout.name"
+                           #WType="ngModel">
+
+                    <div *ngIf="WType.invalid && WType.touched">
+                      <div *ngIf="WType.errors.required" class="error-message">
+                        Workout is required.
+                      </div>
+                    </div>
+
+                    <label class="left" for="type2">Type:</label>
+                    <select class="select" id="type2" name="demo" [(ngModel)]="currentWorkout.type" required
+                            #WTypeO="ngModel"
+                            [style.margin-bottom]="(currentWorkout.type !== undefined && WTypeO.errors !== null)? '5px' : '22px'">
+                      <option *ngFor="let c of enums.workoutTypes" [ngValue]="c">{{c}}</option>
+                    </select>
+
+                    <div *ngIf="WTypeO.invalid && WTypeO.touched">
+                      <div *ngIf="WTypeO.errors.required" class="error-message">
+                        Workout Type is required.
+                      </div>
+                    </div>
+
+                    <div *ngIf="currentWorkout.type==='Link'">
+                      <label for="workoutLink">Link Url</label>
+                      <input id="workoutLink" type="text" name="workoutLink"
+                             required
+                             autocomplete="off"
+                             [style.margin-bottom]="(currentWorkout.link !== undefined && WLink.errors !== null)? '5px' : '22px'"
+                             [(ngModel)]="currentWorkout.link"
+                             #WLink="ngModel">
+
+                      <div *ngIf="WLink.invalid && WLink.touched">
+                        <div *ngIf="WLink.errors.required" class="error-message">
+                          Workout Link is required.
+                        </div>
+                      </div>
+
+                      <button (click)="addWorkout()" class="fullWight"
+                              [class]="WType.invalid||WLink.invalid?'registerbtnD':'registerbtn'"
+                              [disabled]="WType.invalid||WLink.invalid"
+                              *ngIf="selectedWorkoutOption!=='Edit'&&selectedWorkoutOption!=='Delete'">Add Workout
+                      </button>
+                      <button (click)="finishEditWorkout()"
+                              [class]="WType.invalid||WLink.invalid?'registerbtnD':'registerbtn'"
+                              [disabled]="WType.invalid||WLink.invalid"
+                              class="fullWight" *ngIf="selectedWorkoutOption==='Edit'">
+                        Edit Workout
+                      </button>
+                    </div>
+
+                    <button (click)="addWorkout()" class="fullWight"
+                            [class]="WType.invalid||WTypeO.invalid?'registerbtnD':'registerbtn'"
+                            [disabled]="WType.invalid||WTypeO.invalid"
+                            *ngIf="selectedWorkoutOption!=='Edit'&&selectedWorkoutOption!=='Delete'&&currentWorkout.type!=='Link'">
+                      Add Workout
+                    </button>
+
+                    <button (click)="finishEditWorkout()" class="fullWight"
+                            [class]="WType.invalid||WTypeO.invalid?'registerbtnD':'registerbtn'"
+                            [disabled]="WType.invalid||WTypeO.invalid"
+                            *ngIf="selectedWorkoutOption==='Edit'&&currentWorkout.type!=='Link'">
+                      Edit Workout
+                    </button>
+                  </form>
+                </div>
+
+
+                <div *ngIf="selectedWorkout">
+
+                  <form>
+
+                    <h2 class="tableView">Exercise Creator</h2>
+                    <button (click)="resetWorkout()" class="topRight">X</button>
+                    <h1>{{selectedWorkout.name}}</h1>
+                    <label class="left" for="type">Type:</label>
+                    <select class="select" id="type" [(ngModel)]="currentExercise.type" name="exType"
+                            required
+                            #EType="ngModel">
+                      <option *ngFor="let c of enums.exerciseTypes" [ngValue]="c">{{c}}</option>
+                    </select>
+
+                    <label class="left" for="target">Target:</label>
+                    <select class="select" id="target" [(ngModel)]="currentExercise.target" name="exTarggget"
+                            required
+                            #ETarget="ngModel">
+                      <option *ngFor="let c of enums.exerciseTargets" [ngValue]="c">{{c}}</option>
+                    </select>
+
+                    <label class="left" for="duration">Duration:</label>
+                    <div class="fullWight">
+
+                      <div class="column6">
+                        <input id="duration-reps-16" type="text" placeholder="00" autocomplete="off"
+                               [(ngModel)]="currentExercise.duration" name="duration-reps" value="" maxlength="3"
+                               required
+                               (keyup)="checkForWrongDurationInput()"
+                               [style.margin-bottom]="(isDurationInvalid)? '5px' : '22px'"
+                               #EDI="ngModel">
+
+                        <div *ngIf="isDurationInvalid" class="error-message">
+                          Duration is Invalid Type.
+                        </div>
+
+                      </div>
+                      <div class="column6">
+                        <select id="duration" [(ngModel)]="currentExercise.durationType" name="duration2"
+                                required
+                                #EDT="ngModel">
+                          <option *ngFor="let c of enums.durationTypes" [ngValue]="c">{{c}}</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <button class="fullWight" (click)="addExercise()"
+                            [class]="EDT.invalid||EDI.invalid||ETarget.invalid||EType.invalid||isDurationInvalid?'registerbtnD':'registerbtn'"
+                            [disabled]="EDT.invalid||EDI.invalid||ETarget.invalid||EType.invalid||isDurationInvalid"
+                            *ngIf="selectedWorkoutOption!=='Edit'&&selectedWorkoutOption!=='Delete'">Add Exercise
+                    </button>
+                    <button (click)="finishEditExercise()"
+                            [class]="EDT.invalid||EDI.invalid||ETarget.invalid||EType.invalid||isDurationInvalid?'registerbtnD':'registerbtn'"
+                            [disabled]="EDT.invalid||EDI.invalid||ETarget.invalid||EType.invalid||isDurationInvalid"
+                            *ngIf="selectedWorkoutOption==='Edit'">Edit Exercise
+                    </button>
+
+                  </form>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+
+        <input type="button" name="previous" class="previous action-button" (click)="prev()" value="Previous"/>
+        <input type="button" name="next" class="next action-button" (click)="next()" value="Next"/>
+      </fieldset>
+      <fieldset *ngIf="step===3">
+        <h2 class="fs-title">Training Confirmation</h2>
+        <h3 class="fs-subtitle">Step 3</h3>
+
+        <input type="button" name="previous" class="previous action-button" (click)="prev()" value="Previous"/>
+        <input type="submit" name="submit" class="submit action-button" (click)="editTraining()"
+               value="Finish Editing"/>
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+<div class="alert alert-danger" role="alert" *ngIf="cantEdit">
+  <h4 class="alert-heading">Ooops!</h4>
+  <p>Cannot edit training with status <span style="color: green">Completed</span>.</p>
+  <hr>
+  <a class="mb-0" [routerLink]="lastUrl"
+     routerLinkActive="active">Click here to view training.</a>
+</div>
+

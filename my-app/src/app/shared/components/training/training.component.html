@@ -1,0 +1,37 @@
+<article  class="box excerpt" style="height: 100px">
+
+  <h3 class="titleTraining">{{training.title}}</h3>
+
+  <a *ngIf="training.trainingType=='Running'" class="imageCustom"><img
+    [class.easy]="training.difficulty==='Easy'"
+    [class.medium]="training.difficulty==='Medium'"
+    [class.hard]="training.difficulty==='Hard'"
+    class="circleImage"
+    src="../../../../assets/images/running.png"
+    alt=""/></a>
+  <a *ngIf="training.trainingType=='Ski'" class="imageCustom"><img
+    [class.easy]="training.difficulty==='Easy'"
+    [class.medium]="training.difficulty==='Medium'"
+    [class.hard]="training.difficulty==='Hard'"
+    class="circleImage"
+    src="../../../../assets/images/ski.png"
+    alt=""/></a>
+  <a *ngIf="training.trainingType=='Bike'" class="iimageCustom"><img
+    [class.easy]="training.difficulty==='Easy'"
+    [class.medium]="training.difficulty==='Medium'"
+    [class.hard]="training.difficulty==='Hard'"
+    class="circleImage"
+    src="../../../../assets/images/bike.png"
+    alt=""/></a>
+  <a *ngIf="training.trainingType=='Fitness'" class="iimageCustom"><img
+    [class.easy]="training.difficulty==='Easy'"
+    [class.medium]="training.difficulty==='Medium'"
+    [class.hard]="training.difficulty==='Hard'"
+    class="circleImage"
+    src="../../../../assets/images/fitness.png"
+    alt=""/></a>
+
+  <p class="date">{{training.fromDate + ' <-> ' + training.toDate}}</p>
+
+  <p class="type" [style.color]="training.statusType==='Completed' ? 'green' : 'red'"> {{training.statusType}}</p>
+</article>

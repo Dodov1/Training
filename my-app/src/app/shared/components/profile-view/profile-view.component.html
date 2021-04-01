@@ -1,0 +1,22 @@
+<div class="notFriendsImg">
+
+  <img
+    class="profileImage"
+    src="{{imageLocation}}"
+    alt=""/>
+
+</div>
+
+<div class="notFriends">
+  <h1 class="info">Personal Information:</h1>
+  <h3 class="info">First Name - {{user.firstName}}</h3>
+  <h3 class="info">Last Name - {{user.lastName}}</h3>
+  <h3 class="info">Username - {{user.username}}</h3>
+  <h3 class="info">Height - {{user.height}} cm</h3>
+  <h3 class="info">Age - {{user.age}}</h3>
+  <h3 class="info">Email - {{user.email}}</h3>
+
+</div>
+<button class="AddButton" (click)="addRequest()" *ngIf="statusType===null||statusType==='Rejected'">Add Request
+</button>
+<h2 class="requestPending" *ngIf="statusType==='NotAnswered'">Request Pending</h2>

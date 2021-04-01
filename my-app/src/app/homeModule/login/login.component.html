@@ -1,0 +1,50 @@
+<div class="backgroundCustom">
+
+  <form class="modal-content animate">
+
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" #usernameH="ngModel" [(ngModel)]="username" name="uname"
+             id="uname" required minlength="2">
+      <div *ngIf="usernameH.invalid && usernameH.touched">
+        <div *ngIf="usernameH.errors.required" class="error-message">
+          First Name is required.
+        </div>
+        <div *ngIf="usernameH.errors.minlength" class="error-message">
+          First Name must be 2 or more symbols.
+        </div>
+      </div>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" [(ngModel)]="password" #passwordH="ngModel" placeholder="Enter Password" id="psw"
+             name="psw" required minlength="4">
+      <div *ngIf="passwordH.invalid && passwordH.touched">
+        <div *ngIf="passwordH.errors.required" class="error-message">
+          Password is required.
+        </div>
+        <div *ngIf="passwordH.errors.minlength" class="error-message">
+          Password must be 4 or more symbols.
+        </div>
+      </div>
+      <div
+        *ngIf="wrongData"
+        class="error-messageWrongInput">
+        Invalid username or password!
+      </div>
+
+      <div
+        *ngIf="verifyEmail"
+        class="error-messageWrongInput">
+        Verify Your Email!
+      </div>
+
+      <button type="submit" (click)="authorize()"
+              [style.background-color]="passwordH.errors||usernameH.errors?'gray':'#4CAF50'"
+              [disabled]="passwordH.errors||usernameH.errors">Login
+      </button>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" routerLink="/" routerLinkActive="active" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>

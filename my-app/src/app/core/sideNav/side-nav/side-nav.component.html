@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-sm navbar-default">
+
+  <div class="navbar-header black">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu"
+            aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fa fa-bars"></i>
+    </button>
+    <a class="navbar-brand" href="/day">Training Program</a>
+  </div>
+
+  <div id="main-menu" class="main-menu collapse navbar-collapse black">
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="/dashboard"> <i class="menu-icon ti-layout-grid3-alt biggerSize2"></i>
+          <h3 class="biggerSize">Dashboard</h3></a>
+      </li>
+      <h3 class="menu-title">User</h3>
+      <li>
+        <a href="/myStatistics"> <i class="menu-icon ti-bar-chart-alt biggerSize2 blue"></i>
+          <h3 class="biggerSize">My Statistics</h3></a>
+      </li>
+      <li>
+        <a href="/myTrainings"> <i class="menu-icon ti-layers-alt biggerSize2 blue"></i>
+          <h3 class="biggerSize">My Trainings</h3></a>
+      </li>
+      <li>
+        <a href="/trainers"> <i class="menu-icon ti-user biggerSize2 blue"></i>
+          <h3 class="biggerSize">Trainers</h3></a>
+      </li>
+      <h3 *ngIf="isTrainer" class="menu-title">Trainer</h3><!-- /.menu-title -->
+      <li>
+        <a *ngIf="isTrainer" href="/users"> <i class="menu-icon ti-user biggerSize3 yellow"></i>
+          <h3 class="biggerSize">Users</h3></a>
+      </li>
+      <li>
+        <a *ngIf="isTrainer" href="/trainingCreator"> <i class="menu-icon ti-folder biggerSize3 yellow"></i>
+          <h3 class="biggerSize">Training Creator</h3></a>
+      </li>
+      <h3 *ngIf="isAdmin" class="menu-title">ADMIN</h3><!-- /.menu-title -->
+      <li>
+        <a *ngIf="isAdmin" href="/admin"> <i class="menu-icon ti-list-ol biggerSize2 orange"></i>
+          <h3 class="biggerSize">Approve Trainers</h3></a>
+      </li>
+      <li>
+        <a *ngIf="isAdmin" href="/logs"> <i class="menu-icon  ti-view-list biggerSize2 orange"></i>
+          <h3 class="biggerSize">Logs</h3></a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
