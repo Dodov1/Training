@@ -140,12 +140,11 @@
 
 
           <app-trainings [trainings]="trainings" [urlPrefix]="'/users/' + user.id +'/trainings/'"></app-trainings>
-
+          <div *ngIf="trainings&&trainings.length===0" class="positionCenter">No Trainings</div>
         </div>
 
       </div>
 
-      <div *ngIf="trainings&&trainings.length===0" class="positionCenter">No Trainings</div>
     </div>
   </div>
   <div class="column">
